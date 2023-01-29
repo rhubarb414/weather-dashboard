@@ -9,12 +9,41 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
   </head>
   <body>
     <nav class="navbar is-link" role="navigation" aria-label="main navigation">
       <div class="navbar-brand ml-4 is-size-3">Weather Dashboard</div>
     </nav>
-    <script src="assets/js/script.js"></script>
+
+    <div class="columns ml-4">
+      <div class="column is-one-quarter">
+        <div class="search field">
+          <label class="search-title label">Search for a city:</label>
+          <div class="control">
+            <input
+              class="search-form input"
+              type="text"
+              placeholder="Portland, OR"
+            />
+          </div>
+          <div class="field mt-4">
+            <div class="control">
+              <button class="button is-link">Search</button>
+            </div>
+          </div>
+
+          <!-- <div class="search-title">Search for a city:</div>
+          <div class="search-form"></div>
+          <div class="search-button"></div> -->
+        </div>
+        <div class="search-history">
+          <div class="saved-city"></div>
+          <!-- container for city search history-->
+        </div>
+      </div>
+      <div class="forecast column">5 Day Forecast</div>
+    </div>
+    <script src="assets/script.js"></script>
   </body>
 </html>
