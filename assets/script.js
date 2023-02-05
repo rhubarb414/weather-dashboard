@@ -31,20 +31,19 @@ function convertToCoords(city, stateAbbr) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       lat = data[0]["lat"];
       long = data[0]["lon"];
-      console.log("lat = " + lat + " long = " + long);
-      queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`;
-      console.log(queryURL);
-      city = data[0]["name"];
+      city = data[0]["name"]; //use API city name to account for user-input capitalization variance
       stateFull = data[0]["state"]; //store full state name to display on DOM, in case user confuses abbreviation
-      console.log(stateFull);
-      getForecast(queryURL);
+      //update queryURL
+      queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`;
+
+      //make api call to get forecast
+      getForecast();
     });
 }
 // api call for weather forecast
-function getForecast(queryURL) {
+function getForecast() {
   fetch(queryURL)
     .then(function (response) {
       return response.json();
