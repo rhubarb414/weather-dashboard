@@ -43,11 +43,16 @@ function convertToCoords(city, stateAbbr) {
 }
 // api call for weather forecast
 function getForecast() {
+  let currentDate = "";
+
   fetch(queryURL)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      console.log(data); // delete
+      //multiply current dt by 1000 as dayjs uses unix timestamp in milliseconds as standard
+      currentDate = dayjs(data.current.dt * 1000).format("dddd MMM DD");
+      console.log("currentDate is " + currentDate); //delete
     });
 }
