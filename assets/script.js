@@ -1,10 +1,9 @@
-var apiKey = "a9c922718c1bf79be61715d73fa7a803";
+var APIKey = "a9c922718c1bf79be61715d73fa7a803";
 var lat;
 var long;
 var queryURL;
 var city;
 var stateFull;
-// var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`; //forecast?
 
 var searchInputVal = document.querySelector(".search-input").value;
 var searchBtn = document.querySelector(".search-button");
@@ -25,7 +24,7 @@ searchBtn.addEventListener("click", function (event) {
 // takes city, state input from user and converts to coordinates
 function convertToCoords(city, stateAbbr) {
   fetch(
-    `https://api.openweathermap.org/geo/1.0/direct?q=${city},${stateAbbr},US&limit=1&appid=${apiKey}`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${city},${stateAbbr},US&limit=1&appid=${APIKey}`
   )
     .then(function (response) {
       return response.json();
@@ -36,7 +35,8 @@ function convertToCoords(city, stateAbbr) {
       city = data[0]["name"]; //use API city name to account for user-input capitalization variance
       stateFull = data[0]["state"]; //store full state name to display on DOM, in case user confuses abbreviation
       //update queryURL
-      queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`;
+      queryURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&units=imperial&exclude=minutely,hourly,alerts&appid=${APIKey}`;
+      // queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`;
 
       //make api call to get forecast
       getForecast();
