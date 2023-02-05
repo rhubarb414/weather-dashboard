@@ -43,12 +43,30 @@
         </div>
       </div>
       <div class="weather column">
-        <div class="forecast">
-          <h2>Current Conditions</h2>
+        <div class="current column mt-4">
+          <h2 class="mb-4">Current Conditions</h2>
+          <div class="columns">
+            <div class="column is-one-fifth"></div>
+            <div class="column is-one-fifth"></div>
+            <div class="column is-one-fifth"></div>
+            <div class="column is-one-fifth"></div>
+            <div class="column is-one-fifth"></div>
+          </div>
         </div>
-        <div class="forecast column"><h2>5 Day Forecast</h2></div>
+
+        <div class="forecast column mt-4">
+          <h2 class="mb-4">5 Day Forecast</h2>
+          <div class="columns">
+            <div class="day-0 column is-one-fifth"></div>
+            <div class="day-1 column is-one-fifth"></div>
+            <div class="day-2 column is-one-fifth"></div>
+            <div class="day-3 column is-one-fifth"></div>
+            <div class="day-4 column is-one-fifth"></div>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="assets/script.js"></script>
   </body>
 </html>
