@@ -36,7 +36,6 @@ function convertToCoords(city, stateAbbr) {
       stateFull = data[0]["state"]; //store full state name to display on DOM, in case user confuses abbreviation
       //update queryURL
       queryURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&units=imperial&exclude=minutely,hourly,alerts&appid=${APIKey}`;
-      // queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`;
 
       //make api call to get forecast
       getForecast();
