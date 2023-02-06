@@ -44,6 +44,8 @@ function convertToCoords(city, stateAbbr) {
 // api call for weather forecast
 function getForecast() {
   let currentDate = "";
+  let currentTime = "";
+  let localTimezone = "";
 
   fetch(queryURL)
     .then(function (response) {
@@ -52,9 +54,14 @@ function getForecast() {
     .then(function (data) {
       console.log(data); // delete
       //multiply current dt by 1000 as dayjs uses unix timestamp in milliseconds as standard
-      currentDate = dayjs(data.current.dt * 1000).format("dddd MMM DD");
+      localTimezone = data.timezone_offset;
+      currentDate = dayjs
+        .utc((data.current.dt + localTimezone) * 1000)
+        .format("dddd MMM DD");
+      currentTime = dayjs
+        .utc((data.current.dt + localTimezone) * 1000)
+        .format("h:mm A");
       console.log("currentDate is " + currentDate); //delete
+      currentHeaderEl.textContent = `Conditions in ${city}, ${stateFull} at ${currentTime}, ${currentDate}.`;
     });
-
-  currentHeaderEl.textContent = `Current conditions in ${city}, ${stateFull}`;
 }
