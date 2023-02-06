@@ -5,7 +5,7 @@ let queryURL;
 let city;
 let stateFull;
 const currentHeaderEl = document.querySelector(".current-header");
-const currentIconEl = document.querySelector(".current-icon");
+const currentIconEl = document.querySelector(".current-icon"); //rename if using for all current conditions data
 const searchBtn = document.querySelector(".search-button");
 
 searchBtn.addEventListener("click", function (event) {
@@ -53,6 +53,7 @@ const callAPI = () => {
     .then(function (data) {
       console.log(data); // delete
       currentConditions(data);
+      getForecast(data);
     });
 };
 
@@ -68,6 +69,7 @@ const currentConditions = (data) => {
     .format("h:mm A");
 
   currentHeaderEl.textContent = `Conditions in ${city}, ${stateFull} at ${currentTime}, ${currentDate}.`;
+  //rename iconURL since it's housing all the current conditions data
   const iconURL = `<img src=http://openweathermap.org/img/wn/${
     data.current.weather[0].icon
   }@2x.png></img>
@@ -78,4 +80,25 @@ const currentConditions = (data) => {
   currentIconEl.innerHTML = iconURL;
 };
 
-const getForecast = (data) => {};
+const getForecast = (data) => {
+  const dayZeroEl = document.querySelector(".day-0");
+  const dayOneEl = document.querySelector(".day-1");
+  const dayTwoEl = document.querySelector(".day-2");
+  const dayThreeEl = document.querySelector(".day-3");
+  const dayFourEl = document.querySelector(".day-4");
+
+  const daysElArray = [dayZeroEl, dayOneEl, dayTwoEl, dayThreeEl, dayFourEl];
+
+  for (let index = 1; index < 6; index++) {
+    daysElArray[index - 1].innerHTML = `<p>${dayjs
+      .utc((data.daily[index].dt + data.timezone_offset) * 1000)
+      .format("dddd MMM DD")}</p>
+    <img src=http://openweathermap.org/img/wn/${
+      data.daily[index].weather[0].icon
+    }@2x.png></img>
+     <p>${data.daily[index].weather[0].description}</p>
+    <p>${Math.floor(data.daily[index].temp.day)}\u{00B0}F</p>
+    <p>${data.daily[index].humidity}% humidity</p>
+    <p>${Math.floor(data.daily[index].wind_speed)} mph wind`;
+  }
+};
