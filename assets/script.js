@@ -4,7 +4,7 @@ var long;
 var queryURL;
 var city;
 var stateFull;
-
+let currentHeaderEl = document.querySelector(".current-header");
 var searchInputVal = document.querySelector(".search-input").value;
 var searchBtn = document.querySelector(".search-button");
 
@@ -55,4 +55,6 @@ function getForecast() {
       currentDate = dayjs(data.current.dt * 1000).format("dddd MMM DD");
       console.log("currentDate is " + currentDate); //delete
     });
+
+  currentHeaderEl.textContent = `Current conditions in ${city}, ${stateFull}`;
 }
