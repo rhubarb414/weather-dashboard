@@ -81,13 +81,13 @@ const currentConditions = (data) => {
 };
 
 const getForecast = (data) => {
-  const dayZeroEl = document.querySelector(".day-0");
   const dayOneEl = document.querySelector(".day-1");
   const dayTwoEl = document.querySelector(".day-2");
   const dayThreeEl = document.querySelector(".day-3");
   const dayFourEl = document.querySelector(".day-4");
+  const dayFiveEl = document.querySelector(".day-5");
 
-  const daysElArray = [dayZeroEl, dayOneEl, dayTwoEl, dayThreeEl, dayFourEl];
+  const daysElArray = [dayOneEl, dayTwoEl, dayThreeEl, dayFourEl, dayFiveEl];
 
   for (let index = 1; index < 6; index++) {
     daysElArray[index - 1].innerHTML = `<p>${dayjs
